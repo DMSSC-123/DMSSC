@@ -23,13 +23,13 @@ git clone https://github.com/DMSSC-123/DeepSubspaceClustering.git
 cd DMSSC
 pip install -r requirements.txt
 
-
+```
 ### **2. Feature extraction**
-
-
+```bash
 python Feature_extract.py --dataset fashion_mnist
-
+```
 ### **3. Train the networks**
+```bash
 python main.py --dataset fashion_mnist
 
 
