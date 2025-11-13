@@ -19,8 +19,8 @@ This repository provides the implementation of a deep clustering framework based
 ### **1. Install dependencies**
 
 ```bash
-git clone git@github.com:cs-whh/DSASC.git
-cd DSASC 
+git clone https://github.com/DMSSC-123/DeepSubspaceClustering.git
+cd DMSSC
 pip install -r requirements.txt
 
 
