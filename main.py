@@ -25,7 +25,7 @@ parser.add_argument("--lambda3", type=float, default=1.0)
 parser.add_argument("--lambda4", type=float, default=1.0)
 parser.add_argument("--lambda5", type=float, default=0.5, help="weight for consistency loss")
 parser.add_argument("--lr", type=float, default=1e-5)
-parser.add_argument("--epochs", type=int, default=150)
+parser.add_argument("--epochs", type=int, default=1000)
 
 args = parser.parse_args()
 
@@ -36,7 +36,7 @@ num_cluster = 10
 num_neighbor = 20
 if args.dataset == 'cifar100':
     num_cluster = 100
-    args.epochs = 800
+    args.epochs = 1000
 
 # load data
 saved_features = torch.load(os.path.join(features_save_dir, args.dataset + features_suffix), weights_only=True)
@@ -91,15 +91,12 @@ for epoch in pbar:
 
 
 
-print("content self-expression clustering results:")
-Ca = content_expression.detach().to('cpu').numpy()
-y_pred = sklearn_spectral_clustering(Ca, num_cluster)
-print(f"ACC = {cluster_accuracy(label, y_pred):.4f}, NMI = {nmi(label, y_pred):.4f}, ARI = {ari(label, y_pred):.4f}")
 
 print("fusion self-expression clustering results:")
 C = fusion_expression.detach().to('cpu').numpy()
 y_pred = sklearn_spectral_clustering(C, num_cluster)
 print(f"ACC = {cluster_accuracy(label, y_pred):.4f}, NMI = {nmi(label, y_pred):.4f}, ARI = {ari(label, y_pred):.4f}")
+
 
 
 
