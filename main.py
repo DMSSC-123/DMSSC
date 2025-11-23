@@ -13,11 +13,9 @@ parser = argparse.ArgumentParser(description="use pretraining net work for featu
 parser.add_argument("--dataset",
                     dest='dataset',
                     choices=('fashion_mnist',
-                             'cifar10',
-                             'cifar100',
-                             'stl10'),
+                             'cifar100'),
                     help="Dataset to train",
-                    default='stl10')
+                    default='fashion_mnist')
 parser.add_argument("--beta", type=float, default=0)
 parser.add_argument("--lambda1", type=float, default=1.0)
 parser.add_argument("--lambda2", type=float, default=1.0)
@@ -36,7 +34,6 @@ num_cluster = 10
 num_neighbor = 20
 if args.dataset == 'cifar100':
     num_cluster = 100
-    args.epochs = 1000
 
 # load data
 saved_features = torch.load(os.path.join(features_save_dir, args.dataset + features_suffix), weights_only=True)
@@ -96,6 +93,7 @@ print("fusion self-expression clustering results:")
 C = fusion_expression.detach().to('cpu').numpy()
 y_pred = sklearn_spectral_clustering(C, num_cluster)
 print(f"ACC = {cluster_accuracy(label, y_pred):.4f}, NMI = {nmi(label, y_pred):.4f}, ARI = {ari(label, y_pred):.4f}")
+
 
 
 
