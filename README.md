@@ -26,10 +26,10 @@ pip install -r requirements.txt
 ```
 ### **2. Feature extraction**
 ```bash
-python Feature_extract.py --dataset fashion_mnist
+python Feature_extract.py --dataset=fashion_mnist
 ```
 ### **3. Train the networks**
 ```bash
-python main.py --dataset fashion_mnist
+python main.py --dataset=fashion_mnist
 
 
