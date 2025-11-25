@@ -22,7 +22,7 @@ parser.add_argument("--lambda2", type=float, default=1.0)
 parser.add_argument("--lambda3", type=float, default=1.0)
 parser.add_argument("--lambda4", type=float, default=1.0)
 parser.add_argument("--lambda5", type=float, default=0.5, help="weight for consistency loss")
-parser.add_argument("--lr", type=float, default=1e-5)
+parser.add_argument("--lr", type=float, default=1e-4)
 parser.add_argument("--epochs", type=int, default=1000)
 
 args = parser.parse_args()
@@ -93,6 +93,7 @@ print("fusion self-expression clustering results:")
 C = fusion_expression.detach().to('cpu').numpy()
 y_pred = sklearn_spectral_clustering(C, num_cluster)
 print(f"ACC = {cluster_accuracy(label, y_pred):.4f}, NMI = {nmi(label, y_pred):.4f}, ARI = {ari(label, y_pred):.4f}")
+
 
 
 
