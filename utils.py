@@ -38,28 +38,20 @@ def cluster_accuracy(y_true, y_pred):
 # ============================
 
 def load_pretrain_model(name):
-    """加载预训练模型（支持 DINO & EfficientNet 系列）"""
-    if name.startswith("dino"):
-        return torch.hub.load('facebookresearch/dino:main', name)
-
-    elif name.startswith("efficientnet_b"):
-        if name == 'efficientnet_b0':
-            model = models.efficientnet_b0(pretrained=True)
-        elif name == 'efficientnet_b1':
-            model = models.efficientnet_b1(pretrained=True)
-        elif name == 'efficientnet_b2':
-            model = models.efficientnet_b2(pretrained=True)
-        elif name == 'efficientnet_b3':
-            model = models.efficientnet_b3(pretrained=True)
-        elif name == 'efficientnet_b4':
-            model = models.efficientnet_b4(pretrained=True)
-        else:
-            raise ValueError(f"Unsupported model: {name}")
-
-        return torch.nn.Sequential(*list(model.children())[:-1])  # 去掉分类层
-
+    if name == 'efficientnet_b0':
+        model = models.efficientnet_b0(pretrained=True)
+    elif name == 'efficientnet_b1':
+        model = models.efficientnet_b1(pretrained=True)
+    elif name == 'efficientnet_b2':
+        model = models.efficientnet_b2(pretrained=True)
+    elif name == 'efficientnet_b3':
+        model = models.efficientnet_b3(pretrained=True)
+    elif name == 'efficientnet_b4':
+        model = models.efficientnet_b4(pretrained=True)
     else:
         raise ValueError(f"Unsupported model: {name}")
+    return torch.nn.Sequential(*list(model.children())[:-1]) 
+
 
 
 # ============================
@@ -207,3 +199,4 @@ def spectral_clustering(C, K, d, alpha, ro):
     C = thrC(C, alpha)
     y, _ = post_proC(C, K, d, ro)
     return y
+
