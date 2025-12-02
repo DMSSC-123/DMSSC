@@ -87,7 +87,7 @@ def get_middle_feature(self, x):
     if 'b0' in args.model or 'b1' in args.model:
         extract_at = [2, 4, 6]
     else:
-        extract_at = [3, 6, 9]
+        extract_at = [2, 5, 8]
     for i in range(1, len(self.features) - 1):
         x = self.features[i](x)
         if i in extract_at:
@@ -136,4 +136,5 @@ y_true_cpu = y_true.cpu()
 
 torch.save({'data': features_cpu, 'label': y_true_cpu},
            os.path.join(features_save_dir, args.dataset + features_suffix))
+
 print("Files already downloaded and verified")
